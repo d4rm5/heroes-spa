@@ -8,7 +8,7 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-  const heroImageUrl = `/heroes/${id}.jpg`;
+  const heroImgUrl = `/heroes/${id}.jpg`;
   const charactersByHero = <p>{characters}</p>;
   return (
     <div className="col animate__animated animate__fadeIn">

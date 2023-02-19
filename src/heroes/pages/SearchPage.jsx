@@ -1,28 +1,28 @@
-import { useLocation, useNavigate } from 'react-router-dom'
-import queryString from 'query-string'
-import { useForm } from '../../hooks/useForm'
-import { HeroCard } from '../components'
-import { getHeroesByName } from '../helpers'
+import { useLocation, useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
+import { useForm } from '../../hooks/useForm';
+import { HeroCard } from '../components';
+import { getHeroesByName } from '../helpers';
 
 export const SearchPage = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const { q = '' } = queryString.parse(location.search)
-  const heroes = getHeroesByName(q)
+  const { q = '' } = queryString.parse(location.search);
+  const heroes = getHeroesByName(q);
 
-  const showSearch = q.length === 0
-  const showError = q.length > 0 && heroes.length === 0
+  const showSearch = q.length === 0;
+  const showError = q.length > 0 && heroes.length === 0;
 
   const { searchText, onInputChange } = useForm({
     searchText: q,
-  })
+  });
 
   const onSearchSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // if (searchText.trim().length <= 1) return
-    navigate(`?q=${searchText.toLowerCase().trim()}`)
-  }
+    navigate(`?q=${searchText.toLowerCase().trim()}`);
+  };
 
   return (
     <>
@@ -59,12 +59,14 @@ export const SearchPage = () => {
           )} */}
 
           <div
+            data-testid="alertPrimary"
             className="alert alert-primary"
             style={{ display: showSearch ? '' : 'none' }}
           >
             Search a hero
           </div>
           <div
+            data-testid="alertDanger"
             className="alert alert-danger"
             style={{ display: showError ? '' : 'none' }}
           >
@@ -77,5 +79,5 @@ export const SearchPage = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
